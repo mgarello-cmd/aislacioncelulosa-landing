@@ -20,7 +20,7 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Aislación Celulosa",
-      "description": "Aislación térmica y acústica con celulosa proyectada e insuflada para viviendas, oficinas, gastronomía y galpones. Operamos en GBA Norte, CABA y zona Oeste, con red de instaladores certificados en todo el país.",
+      "description": "Aislación térmica y acústica con celulosa proyectada para viviendas, oficinas, gastronomía y galpones. Operamos en GBA Norte, CABA y zona Oeste, con red de instaladores certificados en todo el país.",
       "url": "https://aislacioncelulosa.com.ar/",
       "areaServed": [
         {"@type": "Place", "name": "GBA Norte"},
@@ -36,14 +36,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --verde: #2d5f3f;
-            --verde-claro: #4a8b5e;
-            --verde-fondo: #f0f5f1;
-            --crema: #faf7f2;
+            --verde: #84cc16;        /* Lima brillante (primary) */
+            --verde-claro: #a3e635;  /* Lima más clara (hover) */
+            --verde-fondo: #f7fee7;  /* Lima muy suave (backgrounds) */
+            --crema: #fef7f1;        /* Crema cálido */
             --texto: #1a1a1a;
             --texto-suave: #555;
             --borde: #e5e5e0;
-            --acento: #d97706;
+            --acento: #dc2626;       /* Rojo vibrante (acentos) */
             --azul-tech: #0066cc;
         }
 
@@ -62,8 +62,8 @@
         header {
             position: sticky;
             top: 0;
-            background: white;
-            border-bottom: 1px solid var(--borde);
+            background: var(--texto);
+            border-bottom: 1px solid #333;
             z-index: 100;
             padding: 16px 0;
         }
@@ -75,72 +75,264 @@
         .logo {
             font-size: 20px;
             font-weight: 700;
-            color: var(--verde);
+            color: white;
             letter-spacing: -0.5px;
         }
-        .logo span { color: var(--verde-claro); }
+        .logo span { color: var(--verde); }
         .nav-cta {
-            background: var(--verde);
+            background: var(--acento);
             color: white;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
             font-size: 14px;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.2s;
+            border: 2px solid transparent;
         }
-        .nav-cta:hover { background: var(--verde-claro); }
+        .nav-cta:hover { 
+            background: #b91c1c;
+            transform: translateY(-1px);
+            border: 2px solid var(--verde);
+        }
 
         /* HERO */
         .hero {
-            background: linear-gradient(135deg, var(--verde-fondo) 0%, white 100%);
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
+                url('04-container-exterior.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             padding: 80px 0 100px;
+            position: relative;
+            animation: heroSlideshow 35s infinite;
         }
+        
+        @keyframes heroSlideshow {
+            0%, 20% {
+                background-image: 
+                    linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
+                    url('04-container-exterior.png');
+            }
+            21%, 40% {
+                background-image: 
+                    linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
+                    url('03-wood-frame-construccion.png');
+            }
+            41%, 60% {
+                background-image: 
+                    linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
+                    url('08-techo-detalle-textura.png');
+            }
+            61%, 80% {
+                background-image: 
+                    linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
+                    url('hero-bg-4.png');
+            }
+            81%, 100% {
+                background-image: 
+                    linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 100%),
+                    url('restaurante-moderno.png');
+            }
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1,
+        .hero .pilares,
+        .hero .cuerpo {
+            color: white;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
+        }
+        .hero h1 {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 16px 24px;
+            border-radius: 12px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+        .hero .pilares {
+            font-size: clamp(20px, 2.8vw, 30px);
+            font-weight: 800;
+            color: var(--texto);
+            padding: 24px 36px;
+            display: inline-block;
+            position: relative;
+            margin-bottom: 32px;
+            line-height: 1.7;
+            letter-spacing: 0.3px;
+            text-shadow: none;
+        }
+        .hero .pilares::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+            border-radius: 16px;
+            z-index: -1;
+            border: 4px solid var(--acento);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 8px rgba(132, 204, 22, 0.2);
+        }
+        /* Iconos antes de cada claim */
+        .hero .pilares::after {
+            content: '🔥';
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            font-size: 36px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        .hero .cuerpo {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 16px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            font-size: 18px;
+            max-width: 650px;
+            margin-bottom: 32px;
+        }
+
+        /* Badge Gastronomía en Hero */
+        .gastronomia-badge-hero {
+            background: linear-gradient(135deg, rgba(132, 204, 22, 0.08) 0%, rgba(132, 204, 22, 0.03) 100%);
+            color: var(--texto);
+            padding: 20px 32px;
+            border-radius: 14px;
+            margin-bottom: 32px;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.12);
+            border: 2px solid var(--verde);
+            display: inline-block;
+            max-width: 650px;
+            position: relative;
+            overflow: hidden;
+        }
+        .gastronomia-badge-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--verde) 0%, var(--acento) 100%);
+        }
+        .gastronomia-badge-hero strong {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--verde);
+            display: block;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
         .hero h1 {
             font-size: clamp(32px, 5vw, 52px);
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -1px;
             margin-bottom: 24px;
-            color: var(--texto);
-            max-width: 900px;
-        }
-        .hero .pilares {
-            font-size: clamp(20px, 2.5vw, 28px);
-            font-weight: 600;
-            color: var(--verde);
-            margin-bottom: 32px;
-            line-height: 1.3;
-        }
-        .hero .cuerpo {
-            font-size: 18px;
-            color: var(--texto-suave);
-            max-width: 650px;
-            margin-bottom: 32px;
         }
         .hero .cobertura {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border: 1px solid var(--borde);
             border-radius: 8px;
             padding: 16px 20px;
             display: inline-block;
             margin-bottom: 40px;
             font-size: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
         }
         .hero .cobertura strong { color: var(--verde); }
         .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+        
+        /* Badge hero con más contraste */
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--acento);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 2px solid var(--acento);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+        }
+        
+        /* Validación social hero */
+        .hero-social-proof {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 24px;
+            max-width: 650px;
+            margin-bottom: 32px;
+        }
+        .proof-item {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            border: 1px solid var(--borde);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+        }
+        .proof-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--acento);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .proof-label {
+            font-size: 13px;
+            color: var(--texto-suave);
+            line-height: 1.3;
+        }
+        
         .btn-primary {
             background: var(--verde);
             color: white;
-            padding: 16px 32px;
+            padding: 18px 40px;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 17px;
             display: inline-block;
-            transition: transform 0.2s, background 0.2s;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s, border 0.2s;
+            box-shadow: 0 4px 12px rgba(132, 204, 22, 0.25);
+            border: 2px solid transparent;
         }
-        .btn-primary:hover { background: var(--verde-claro); transform: translateY(-1px); }
+        .btn-primary:hover { 
+            background: var(--verde-claro); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(132, 204, 22, 0.35);
+            border: 2px solid var(--acento);
+        }
         .btn-secondary {
             background: white;
             color: var(--verde);
@@ -167,24 +359,24 @@
         }
         .galeria-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(4, 140px);
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
             background: white;
-            padding: 24px;
+            padding: 32px;
             border-radius: 16px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.12);
         }
         .galeria-item {
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
+            aspect-ratio: 4/3;
         }
         .galeria-item:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
             z-index: 2;
         }
         .galeria-item img {
@@ -193,15 +385,14 @@
             object-fit: cover;
             display: block;
         }
-        .galeria-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; } /* 2x2 */
-        .galeria-item:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 2; } /* 1x1 */
-        .galeria-item:nth-child(3) { grid-column: 4 / 6; grid-row: 1 / 3; } /* 2x2 */
-        .galeria-item:nth-child(4) { grid-column: 3 / 4; grid-row: 2 / 3; } /* 1x1 */
-        .galeria-item:nth-child(5) { grid-column: 1 / 2; grid-row: 3 / 5; } /* 1x2 */
-        .galeria-item:nth-child(6) { grid-column: 2 / 4; grid-row: 3 / 5; } /* 2x2 */
-        .galeria-item:nth-child(7) { grid-column: 4 / 5; grid-row: 3 / 5; } /* 1x2 */
-        .galeria-item:nth-child(8) { grid-column: 5 / 6; grid-row: 3 / 4; } /* 1x1 */
-        .galeria-item:nth-child(9) { grid-column: 5 / 6; grid-row: 4 / 5; } /* 1x1 */
+        /* Destacar algunas imágenes clave haciéndolas más grandes */
+        .galeria-item:nth-child(1),
+        .galeria-item:nth-child(6),
+        .galeria-item:nth-child(11),
+        .galeria-item:nth-child(16) {
+            grid-column: span 2;
+            aspect-ratio: 16/9;
+        }
         .galeria-badge {
             text-align: center;
             margin-top: 20px;
@@ -209,8 +400,12 @@
             color: var(--texto-suave);
         }
         .galeria-badge strong {
-            color: var(--verde);
+            color: var(--acento);
             font-weight: 700;
+        }
+        .galeria-badge::before {
+            content: '⭐⭐⭐⭐⭐ ';
+            color: var(--acento);
         }
 
         /* ESFERA INFO - Nuevo */
@@ -288,6 +483,54 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* TESTIMONIALES */
+        .testimoniales {
+            background: var(--crema);
+        }
+        .testimoniales-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .testimonial-card {
+            background: white;
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            padding: 32px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .testimonial-stars {
+            color: var(--acento);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        .testimonial-text {
+            color: var(--texto);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            border-top: 1px solid var(--borde);
+            padding-top: 16px;
+        }
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--texto);
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        .testimonial-location {
+            font-size: 13px;
+            color: var(--texto-suave);
         }
 
         /* PROBLEMA */
@@ -402,55 +645,67 @@
         }
 
         /* CASOS DE USO */
-        .casos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-        }
-        .caso {
-            background: white;
-            border: 2px solid var(--borde);
+        /* Badge Gastronomía */
+        .gastronomia-badge {
+            background: linear-gradient(135deg, var(--acento) 0%, #ef4444 100%);
+            color: white;
+            padding: 20px 28px;
             border-radius: 12px;
-            padding: 32px;
-            transition: transform 0.2s, border-color 0.2s;
+            margin: 32px 0;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
-        .caso:hover {
-            transform: translateY(-4px);
-            border-color: var(--verde-claro);
-        }
-        .caso .icono {
-            font-size: 48px;
-            margin-bottom: 16px;
+        .gastronomia-badge strong {
+            font-weight: 700;
+            font-size: 18px;
             display: block;
+            margin-bottom: 8px;
         }
-        .caso h3 {
-            font-size: 22px;
+
+        /* CASOS LISTA SIMPLE */
+        .casos-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .caso-simple {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid var(--borde);
+            transition: all 0.3s;
+        }
+        .caso-simple:hover {
+            border-color: var(--verde);
+            box-shadow: 0 4px 12px rgba(132, 204, 22, 0.2);
+            transform: translateX(4px);
+        }
+        .caso-simple .icono {
+            font-size: 40px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .caso-content {
+            flex: 1;
+        }
+        .caso-simple h3 {
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--verde);
+            color: var(--texto);
+            margin: 0 0 6px 0;
         }
-        .caso p {
-            color: var(--texto-suave);
-            font-size: 15px;
-            margin-bottom: 16px;
-        }
-        .caso ul {
-            list-style: none;
-            padding: 0;
-        }
-        .caso ul li {
-            color: var(--texto-suave);
+        .caso-simple p {
             font-size: 14px;
-            padding: 6px 0;
-            padding-left: 24px;
-            position: relative;
-        }
-        .caso ul li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--verde);
-            font-weight: 700;
+            color: var(--texto-suave);
+            margin: 0;
+            line-height: 1.5;
         }
 
         /* BENEFICIOS */
@@ -604,19 +859,6 @@
             opacity: 0.9;
         }
 
-        /* FORMULARIO */
-        .formulario { background: var(--crema); }
-        .form-placeholder {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border: 2px dashed var(--borde);
-            border-radius: 12px;
-            padding: 60px 40px;
-            text-align: center;
-            color: var(--texto-suave);
-        }
-
         /* FOOTER */
         footer {
             background: var(--texto);
@@ -691,20 +933,21 @@
             /* Galería responsiva */
             .galeria-trabajos { margin-top: -40px; }
             .galeria-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(9, 120px);
-                gap: 8px;
-                padding: 16px;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
+                padding: 20px;
             }
-            .galeria-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1 / 3; }
-            .galeria-item:nth-child(2) { grid-column: 1 / 2; grid-row: 3 / 4; }
-            .galeria-item:nth-child(3) { grid-column: 2 / 3; grid-row: 3 / 4; }
-            .galeria-item:nth-child(4) { grid-column: 1 / 2; grid-row: 4 / 5; }
-            .galeria-item:nth-child(5) { grid-column: 2 / 3; grid-row: 4 / 5; }
-            .galeria-item:nth-child(6) { grid-column: 1 / 3; grid-row: 5 / 7; }
-            .galeria-item:nth-child(7) { grid-column: 1 / 2; grid-row: 7 / 8; }
-            .galeria-item:nth-child(8) { grid-column: 2 / 3; grid-row: 7 / 8; }
-            .galeria-item:nth-child(9) { grid-column: 1 / 3; grid-row: 8 / 10; }
+            .galeria-item {
+                aspect-ratio: 1;
+            }
+            /* En mobile todas iguales, sin destacadas */
+            .galeria-item:nth-child(1),
+            .galeria-item:nth-child(6),
+            .galeria-item:nth-child(11),
+            .galeria-item:nth-child(16) {
+                grid-column: span 1;
+                aspect-ratio: 1;
+            }
         }
     </style>
 </head>
@@ -723,9 +966,33 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <h1>Aislación con celulosa proyectada e insuflada</h1>
-            <p class="pilares">Menos calor. Menos frío. Menos ruido.<br>Sin obra invasiva.</p>
-            <p class="cuerpo">Reducí el calor en verano hasta 8°C, ahorrá hasta 40% en calefacción y aire acondicionado, y mejorá el confort acústico de tu casa, local, oficina o galpón. Instalación rápida, limpia, sin romper ni mudar.</p>
+            <div class="hero-badge">✓ Material certificado INTI · Instaladores profesionales</div>
+            <h1>Aislación con celulosa proyectada</h1>
+            <p class="pilares">
+                ☀️ Menos calor · ❄️ Menos frío · 🔇 Menos ruido<br>
+                ⚡ Sin obra invasiva
+            </p>
+            <p class="cuerpo">Reducí el calor en verano hasta 8°C, ahorrá hasta 40% en calefacción y aire acondicionado, y mejorá el confort acústico de <strong style="color: var(--acento); font-size: 18px; padding: 2px 6px; background: rgba(132, 204, 22, 0.15); border-radius: 4px;">tu casa, garage, local, oficina o galpón</strong>. Instalación rápida, limpia, sin romper ni mudar. <strong style="color: var(--verde); font-weight: 700;">Contamos con una división especial para Gastronomía.</strong></p>
+
+            <!-- Validación social -->
+            <div class="hero-social-proof">
+                <div class="proof-item">
+                    <div class="proof-number">+500</div>
+                    <div class="proof-label">Proyectos completados</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-number">+30%</div>
+                    <div class="proof-label">Reducción de ruido</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-number">30-40%</div>
+                    <div class="proof-label">Ahorro energético</div>
+                </div>
+                <div class="proof-item">
+                    <div class="proof-number">1-2 días</div>
+                    <div class="proof-label">Instalación promedio</div>
+                </div>
+            </div>
             
             <div class="cobertura">
                 <strong>📍 Zona de cobertura directa:</strong> GBA Norte, CABA, GBA Oeste<br>
@@ -733,36 +1000,9 @@
             </div>
 
             <div class="hero-ctas">
-                <a href="#presupuesto" class="btn-primary">Solicitar presupuesto</a>
-                <a href="#casos" class="btn-secondary">Ver aplicaciones</a>
+                <a href="#presupuesto" class="btn-primary">Solicitar presupuesto gratuito</a>
             </div>
 
-            <!-- ESFERA INFO: Datos técnicos de apertura -->
-            <div class="esfera-info">
-                <div class="esfera-info-title">Celulosa EcoAislación® — Material certificado con validación INTI</div>
-                <div class="esfera-info-content">
-                    <p>La celulosa proyectada es un aislante térmico y acústico fabricado a partir de <strong>85% papel y cartón reciclados</strong>, tratado con sales bóricas que le confieren propiedades ignífugas, fungicidas y repelentes de insectos y roedores.</p>
-                    
-                    <div class="esfera-info-grid">
-                        <div class="esfera-info-item">
-                            <div class="esfera-info-item-title">Conductividad térmica</div>
-                            <div class="esfera-info-item-value">0.039 W/(m·K)</div>
-                        </div>
-                        <div class="esfera-info-item">
-                            <div class="esfera-info-item-title">Capacidad térmica específica</div>
-                            <div class="esfera-info-item-value">2.11 kJ/(kg·°K)</div>
-                        </div>
-                        <div class="esfera-info-item">
-                            <div class="esfera-info-item-title">Clasificación de fuego</div>
-                            <div class="esfera-info-item-value">RE-2 Clase A (INTI)</div>
-                        </div>
-                        <div class="esfera-info-item">
-                            <div class="esfera-info-item-title">Vida útil</div>
-                            <div class="esfera-info-item-value">+50 años</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -782,7 +1022,7 @@
                 
                 <!-- Imagen 3: Wood Frame con celulosa gris aplicada -->
                 <div class="galeria-item">
-                    <img src="03-wood-frame-construccion.png" alt="Aislación térmica en construcción Wood Frame con celulosa insuflada" loading="lazy">
+                    <img src="03-wood-frame-construccion.png" alt="Aislación térmica en construcción Wood Frame" loading="lazy">
                 </div>
                 
                 <!-- Imagen 4: Container metálico en exterior -->
@@ -797,12 +1037,12 @@
                 
                 <!-- Imagen 6: Pasillo de oficina con celulosa blanca en paredes -->
                 <div class="galeria-item">
-                    <img src="06-oficina-ecofine-blanca.png" alt="Pasillo de oficina con celulosa EcoFine Blanca en paredes" loading="lazy">
+                    <img src="06-oficina-ecofine-blanca.png" alt="Pasillo de oficina con celulosa blanca en paredes" loading="lazy">
                 </div>
                 
                 <!-- Imagen 7: Operario con equipo de protección aplicando celulosa -->
                 <div class="galeria-item">
-                    <img src="07-operario-aplicacion.png" alt="Técnico especializado aplicando celulosa proyectada con equipos profesionales" loading="lazy">
+                    <img src="07-operario-aplicacion.png" alt="Técnico especializado aplicando celulosa proyectada" loading="lazy">
                 </div>
                 
                 <!-- Imagen 8: Techo con celulosa beige texturizada (detalle) -->
@@ -814,9 +1054,101 @@
                 <div class="galeria-item">
                     <img src="09-restaurante-terminado.png" alt="Restaurante con aislación acústica y térmica en techo" loading="lazy">
                 </div>
+                
+                <!-- Imagen 10: Galpón con techo de chapa aislado -->
+                <div class="galeria-item">
+                    <img src="10-galpon-techo-chapa.png" alt="Galpón industrial con techo de chapa y aislación de celulosa" loading="lazy">
+                </div>
+                
+                <!-- Imagen 11: Oficina moderna terminada con celulosa visible -->
+                <div class="galeria-item">
+                    <img src="11-oficina-moderna-terminada.png" alt="Oficina moderna con aislación acústica en techo" loading="lazy">
+                </div>
+                
+                <!-- Imagen 12: Salón con equipamiento de audio y celulosa -->
+                <div class="galeria-item">
+                    <img src="12-salon-equipamiento-audio.png" alt="Sala de audio con tratamiento acústico de celulosa" loading="lazy">
+                </div>
+                
+                <!-- Imagen 13: Espacio común corporativo con celulosa en techo -->
+                <div class="galeria-item">
+                    <img src="13-espacio-comun-corporativo.png" alt="Espacio corporativo con aislación térmica y acústica" loading="lazy">
+                </div>
+                
+                <!-- Imagen 14: Detalle de celulosa proyectada en techo -->
+                <div class="galeria-item">
+                    <img src="14-detalle-celulosa-techo.png" alt="Detalle de aplicación de celulosa en techo" loading="lazy">
+                </div>
+                
+                <!-- Imagen 15: Interior de galpón industrial aislado -->
+                <div class="galeria-item">
+                    <img src="15-galpon-industrial-interior.png" alt="Interior de galpón industrial con aislación" loading="lazy">
+                </div>
+                
+                <!-- Imagen 16: Galpón amplio con estructura metálica aislada -->
+                <div class="galeria-item">
+                    <img src="16-galpon-aislado-amplio.png" alt="Galpón de gran superficie con celulosa proyectada" loading="lazy">
+                </div>
+                
+                <!-- Imagen 17: Operarios trabajando en Steel Frame -->
+                <div class="galeria-item">
+                    <img src="17-operarios-steel-frame.png" alt="Equipo de instalación trabajando en estructura Steel Frame" loading="lazy">
+                </div>
+                
+                <!-- Imagen 18: Proyección de celulosa en techo de galpón -->
+                <div class="galeria-item">
+                    <img src="18-techo-galpon-proyeccion.png" alt="Aplicación de celulosa en techo industrial" loading="lazy">
+                </div>
+                
+                <!-- Imagen 19: Operario aplicando celulosa en techo industrial -->
+                <div class="galeria-item">
+                    <img src="19-operario-techo-industrial.png" alt="Técnico realizando proyección en techo de nave industrial" loading="lazy">
+                </div>
+                
+                <!-- Imagen 20: Mano tocando textura de celulosa -->
+                <div class="galeria-item">
+                    <img src="20-mano-textura-celulosa.png" alt="Textura final de celulosa proyectada al tacto" loading="lazy">
+                </div>
             </div>
             <div class="galeria-badge">
-                <strong>+500 proyectos completados</strong> en viviendas, oficinas, restaurantes, galpones, containers y construcción en seco
+                <strong>+500 proyectos completados</strong> · Viviendas, oficinas, restaurantes, galpones y construcción en seco en todo el país
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALES -->
+    <section class="testimoniales">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle">Más de 500 proyectos completados en toda Argentina</p>
+
+            <div class="testimoniales-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Teníamos un restaurante insoportable en verano. El techo de chapa era un horno. Después de aislar con celulosa la diferencia es brutal. Los clientes ya no piden cambiar de mesa y el aire acondicionado gasta la mitad."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Mariana L.</div>
+                        <div class="testimonial-location">Restaurante en Palermo, CABA</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Obra rápida y limpia. Vinieron un lunes, terminaron el martes al mediodía. No tuvimos que cerrar el galpón ni parar producción. El control de temperatura ahora es perfecto para las máquinas."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Roberto S.</div>
+                        <div class="testimonial-location">Galpón industrial, Zona Oeste</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"La casa de steel frame quedó perfecta. Cero ruido de la calle, y en invierno el calor se mantiene. La inversión se pagó sola con lo que bajó la factura de gas."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Sebastián y Ana</div>
+                        <div class="testimonial-location">Vivienda Steel Frame, Pilar</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -898,7 +1230,7 @@
 
                     <div class="esfera-info-grid">
                         <div class="esfera-info-item">
-                            <div class="esfera-info-item-title">Celulosa EcoAislación®</div>
+                            <div class="esfera-info-item-title">Celulosa proyectada</div>
                             <div class="esfera-info-item-value">2.11 kJ/kg·°K</div>
                         </div>
                         <div class="esfera-info-item">
@@ -960,83 +1292,58 @@
     <section id="casos">
         <div class="container">
             <h2 class="section-title">¿Para qué tipo de proyectos sirve?</h2>
-            <p class="section-subtitle">La celulosa proyectada e insuflada es versátil y se adapta a viviendas, comercios, industria y construcción en seco.</p>
+            <p class="section-subtitle">La celulosa proyectada se adapta a cualquier proyecto. Desde viviendas hasta galpones industriales.</p>
 
-            <div class="casos-grid">
-                <div class="caso">
-                    <span class="icono">🏠</span>
-                    <h3>Viviendas y casas</h3>
-                    <p>Techos de chapa, losa, paredes interiores y entrepisos. Reduce calor en verano, conserva calefacción en invierno, y aísla del ruido exterior.</p>
-                    <ul>
-                        <li>Techos de chapa expuestos al sol</li>
-                        <li>Losas y entrepisos</li>
-                        <li>Paredes interiores</li>
-                        <li>Áticos y bauleras</li>
-                    </ul>
-                </div>
-
-                <div class="caso">
+            <div class="casos-lista">
+                <div class="caso-simple">
                     <span class="icono">🍽️</span>
-                    <h3>Restaurantes y locales gastronómicos</h3>
-                    <p>Mejora el confort de clientes y empleados, reduce ruido de cocina y maquinaria, y disminuye consumo de climatización.</p>
-                    <ul>
-                        <li>Reducción de ruido de equipos</li>
-                        <li>Climatización más eficiente</li>
-                        <li>Instalación fuera de horario de servicio</li>
-                        <li>Sin cierre de local</li>
-                    </ul>
+                    <div class="caso-content">
+                        <h3>Tu restaurante</h3>
+                        <p>Climatización 40% más eficiente • Disminuye el ruido • Obra sin cerrar • 1-2 días</p>
+                    </div>
                 </div>
 
-                <div class="caso">
+                <div class="caso-simple">
+                    <span class="icono">🏠</span>
+                    <div class="caso-content">
+                        <h3>Viviendas y casas</h3>
+                        <p>Reducción de calor/frío • Aislación acústica • Paredes, techos, entrepisos</p>
+                    </div>
+                </div>
+
+                <div class="caso-simple">
+                    <span class="icono">☕</span>
+                    <div class="caso-content">
+                        <h3>Bares y locales gastronómicos</h3>
+                        <p>Ruido de equipos reducido • Climatización eficiente • Instalación sin cierre</p>
+                    </div>
+                </div>
+
+                <div class="caso-simple">
                     <span class="icono">🏢</span>
-                    <h3>Oficinas y espacios de trabajo</h3>
-                    <p>Reduce reverberación y mejora inteligibilidad del habla. Confort térmico que permite concentración y productividad.</p>
-                    <ul>
-                        <li>Techos y entrepisos</li>
-                        <li>Reducción de eco en open-space</li>
-                        <li>Climatización eficiente</li>
-                        <li>Instalación sin mudanza</li>
-                    </ul>
+                    <div class="caso-content">
+                        <h3>Oficinas corporativas</h3>
+                        <p>Acústica profesional • Ambientes cómodos • Factura energética reducida</p>
+                    </div>
                 </div>
 
-                <div class="caso">
+                <div class="caso-simple">
                     <span class="icono">🏭</span>
-                    <h3>Galpones y naves industriales</h3>
-                    <p>Control de condensación, protección de maquinaria sensible a temperatura, y confort de empleados.</p>
-                    <ul>
-                        <li>Techos de chapa con condensación</li>
-                        <li>Protección de maquinaria</li>
-                        <li>Confort de empleados</li>
-                        <li>Rapidez en grandes superficies</li>
-                    </ul>
+                    <div class="caso-content">
+                        <h3>Galpones y naves</h3>
+                        <p>Control de condensación • Protección de maquinaria • Confort de empleados</p>
+                    </div>
                 </div>
 
-                <div class="caso">
+                <div class="caso-simple">
                     <span class="icono">🏗️</span>
-                    <h3>Steel Frame y construcción en seco</h3>
-                    <p>Aislación obligatoria en muros y techos de sistemas constructivos modernos. La celulosa se adapta perfectamente a cavidades.</p>
-                    <ul>
-                        <li>Muros de Steel Frame</li>
-                        <li>Wood Frame</li>
-                        <li>Containers adaptados</li>
-                        <li>Modular y prefabricado</li>
-                    </ul>
-                </div>
-
-                <div class="caso">
-                    <span class="icono">🎓</span>
-                    <h3>Colegios y espacios educativos</h3>
-                    <p>Mejora la inteligibilidad del habla en aulas, reduce reverberación y crea un ambiente propicio para el aprendizaje.</p>
-                    <ul>
-                        <li>Aulas y salones</li>
-                        <li>Bibliotecas</li>
-                        <li>SUM y gimnasios</li>
-                        <li>Instalación en receso escolar</li>
-                    </ul>
+                    <div class="caso-content">
+                        <h3>Steel Frame y construcción en seco</h3>
+                        <p>Aislación obligatoria • Se adapta a cavidades • Muros y techos</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+
 
     <!-- BENEFICIOS -->
     <section class="beneficios">
@@ -1081,7 +1388,7 @@
             <div class="esfera-info">
                 <div class="esfera-info-title">Tratamiento con sales bóricas: ignífugo, fungicida y repelente</div>
                 <div class="esfera-info-content">
-                    <p>La celulosa de EcoAislación® está tratada con <strong>ácido bórico y boro pentahidratado</strong> (o fosfato de amonio según el lote), compuestos que le confieren tres propiedades críticas de seguridad:</p>
+                    <p>La celulosa proyectada está tratada con <strong>ácido bórico y boro pentahidratado</strong> (o fosfato de amonio según el lote), compuestos que le confieren tres propiedades críticas de seguridad:</p>
                     
                     <ul style="list-style: none; padding-left: 0; margin-top: 16px;">
                         <li style="margin-bottom: 12px;"><strong>🔥 Retardante de llama:</strong> En caso de incendio, la celulosa no se quema rápidamente, sino que se carboniza creando una capa de protección que frena el avance del fuego. Clasificación IRAM 11910-1 RE-2 Clase A (muy baja propagación de llama).</li>
@@ -1089,7 +1396,39 @@
                         <li style="margin-bottom: 12px;"><strong>🐭 Repelente de insectos y roedores:</strong> Las sales bóricas son tóxicas para insectos al ser ingeridas, causando deshidratación y muerte. En roedores, provocan malestar gastrointestinal que desincentiva su presencia.</li>
                     </ul>
 
-                    <p style="margin-top: 16px;"><strong>Validación:</strong> Todos los lotes de celulosa de EcoAislación® son ensayados por el INTI (Instituto Nacional de Tecnología Industrial) para garantizar cumplimiento normativo en propagación de llama, densidad de humos y corrosión de metales.</p>
+                    <p style="margin-top: 16px;"><strong>Validación:</strong> Todos los lotes de celulosa proyectada son ensayados por el INTI (Instituto Nacional de Tecnología Industrial) para garantizar cumplimiento normativo en propagación de llama, densidad de humos y corrosión de metales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DATOS TÉCNICOS -->
+    <section>
+        <div class="container">
+            <!-- ESFERA INFO: Datos técnicos del material -->
+            <div class="esfera-info">
+                <div class="esfera-info-title">Celulosa proyectada — Material certificado con validación INTI</div>
+                <div class="esfera-info-content">
+                    <p>La celulosa proyectada es un aislante térmico y acústico fabricado a partir de <strong>85% papel y cartón reciclados</strong>, tratado con sales bóricas que le confieren propiedades ignífugas, fungicidas y repelentes de insectos y roedores.</p>
+                    
+                    <div class="esfera-info-grid">
+                        <div class="esfera-info-item">
+                            <div class="esfera-info-item-title">Conductividad térmica</div>
+                            <div class="esfera-info-item-value">0.039 W/(m·K)</div>
+                        </div>
+                        <div class="esfera-info-item">
+                            <div class="esfera-info-item-title">Capacidad térmica específica</div>
+                            <div class="esfera-info-item-value">2.11 kJ/(kg·°K)</div>
+                        </div>
+                        <div class="esfera-info-item">
+                            <div class="esfera-info-item-title">Clasificación de fuego</div>
+                            <div class="esfera-info-item-value">RE-2 Clase A (INTI)</div>
+                        </div>
+                        <div class="esfera-info-item">
+                            <div class="esfera-info-item-title">Vida útil</div>
+                            <div class="esfera-info-item-value">+50 años</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1172,28 +1511,28 @@
 
             <!-- ESFERA INFO: Comparación de absorción acústica -->
             <div class="esfera-info">
-                <div class="esfera-info-title">Absorción acústica: EcoFine Blanca vs fibra estándar</div>
+                <div class="esfera-info-title">Absorción acústica: Fibra fina vs fibra estándar</div>
                 <div class="esfera-info-content">
-                    <p>Las fibras de celulosa de EcoAislación® tienen dos presentaciones: <strong>STD (grano grueso)</strong> para aplicaciones térmicas estándar, y <strong>EcoFine Blanca (grano fino)</strong> para aplicaciones donde se busca también acabado decorativo y máxima absorción acústica.</p>
+                    <p>La celulosa proyectada tiene dos presentaciones: <strong>STD (grano grueso)</strong> para aplicaciones térmicas estándar, y <strong>fibra fina</strong> para aplicaciones donde se busca también acabado decorativo y máxima absorción acústica.</p>
                     
                     <p><strong>Ensayo de absorción acústica por frecuencia:</strong></p>
                     
                     <div class="esfera-info-grid">
                         <div class="esfera-info-item">
                             <div class="esfera-info-item-title">125 Hz (baja frecuencia)</div>
-                            <div class="esfera-info-item-value">STD: 0.15 / EcoFine: 0.25</div>
+                            <div class="esfera-info-item-value">STD: 0.15 / Fina: 0.25</div>
                         </div>
                         <div class="esfera-info-item">
                             <div class="esfera-info-item-title">500 Hz (voz humana)</div>
-                            <div class="esfera-info-item-value">STD: 0.65 / EcoFine: 0.80</div>
+                            <div class="esfera-info-item-value">STD: 0.65 / Fina: 0.80</div>
                         </div>
                         <div class="esfera-info-item">
                             <div class="esfera-info-item-title">2000 Hz (alta frecuencia)</div>
-                            <div class="esfera-info-item-value">STD: 0.90 / EcoFine: 1.00</div>
+                            <div class="esfera-info-item-value">STD: 0.90 / Fina: 1.00</div>
                         </div>
                     </div>
 
-                    <p style="margin-top: 16px;"><strong>Aplicaciones recomendadas:</strong> EcoFine Blanca es ideal para oficinas, colegios, restaurantes y espacios donde se busca reducir reverberación y mejorar inteligibilidad del habla.</p>
+                    <p style="margin-top: 16px;"><strong>Aplicaciones recomendadas:</strong> La fibra fina es ideal para oficinas, colegios, restaurantes y espacios donde se busca reducir reverberación y mejorar inteligibilidad del habla.</p>
                 </div>
             </div>
         </div>
@@ -1262,36 +1601,9 @@
     <section class="cta-final" id="presupuesto">
         <div class="container">
             <h2>Pedí tu presupuesto sin compromiso</h2>
-            <p>Contanos sobre tu propiedad y en menos de 48 horas te enviamos un presupuesto orientativo y coordinamos visita técnica si corresponde.</p>
-            <a href="#formulario" class="btn-final">Solicitar presupuesto</a>
+            <p>Contactanos por WhatsApp, contanos sobre tu propiedad y en menos de 48 horas te enviamos un presupuesto orientativo y coordinamos visita técnica si corresponde.</p>
+            <a href="https://wa.me/5491199999999?text=Hola!%20Quiero%20solicitar%20un%20presupuesto%20para%20aislaci%C3%B3n%20con%20celulosa%20proyectada" target="_blank" class="btn-final">💬 Contactanos por WhatsApp</a>
             <div class="cta-promesa">⏱️ Respuesta en 24-48hs · 🔒 Sin compromiso · ✓ Visita técnica sin cargo en zona de cobertura directa</div>
-        </div>
-    </section>
-
-    <!-- FORMULARIO -->
-    <section class="formulario" id="formulario">
-        <div class="container">
-            <h2 class="section-title">Solicitá tu presupuesto</h2>
-            <p class="section-subtitle">Completá el formulario y te respondemos en 24-48 horas hábiles.</p>
-
-            <div class="form-placeholder">
-                <p><strong>📋 Espacio reservado para el formulario de Tally.so</strong></p>
-                <br>
-                <p>Crear formulario en Tally con estos campos:</p>
-                <br>
-                <p style="text-align: left; max-width: 500px; margin: 0 auto;">
-                    • Nombre y apellido<br>
-                    • Email<br>
-                    • Teléfono / WhatsApp<br>
-                    • Tipo de propiedad <em>(vivienda / oficina / restaurante / galpón / otro)</em><br>
-                    • Ubicación <em>(provincia + localidad)</em><br>
-                    • Metros cuadrados aproximados<br>
-                    • Tipo de superficie <em>(techo de chapa / losa / paredes / entrepiso / otro)</em><br>
-                    • Comentarios adicionales
-                </p>
-                <br>
-                <p>Embed code: <code>&lt;iframe src="https://tally.so/embed/XXXX"&gt;&lt;/iframe&gt;</code></p>
-            </div>
         </div>
     </section>
 
@@ -1301,9 +1613,9 @@
             <div class="footer-grid">
                 <div>
                     <div class="footer-logo">Aislación<span>Celulosa</span></div>
-                    <p>Aislación térmica y acústica con celulosa proyectada e insuflada.</p>
-                    <p>Menos calor. Menos frío. Menos ruido. Sin obra invasiva.</p>
-                    <p style="margin-top: 16px; font-size: 13px; color: #666;">Material certificado EcoAislación® | Ensayos INTI</p>
+                    <p>Aislación térmica y acústica con celulosa proyectada.</p>
+                    <p>Menos calor · Menos frío · Menos ruido · Sin obra invasiva</p>
+                    <p style="margin-top: 16px; font-size: 13px; color: #666;">Material certificado | Ensayos INTI</p>
                 </div>
                 <div>
                     <h4>Cobertura</h4>
